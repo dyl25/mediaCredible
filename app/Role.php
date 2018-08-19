@@ -7,4 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     public $timestamps = false;
+
+    public function users() {
+        $this->hasMany(User::class);
+    }
 }
