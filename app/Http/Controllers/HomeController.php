@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Media;
+use App\Content;
 
 class HomeController extends Controller
 {
@@ -13,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -23,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $bestMedias = Media::latest('id')->take(3)->get();
+        $contents = Content::latest('id')->take(8)->get();
+
+        return view('home', compact('bestMedias', 'contents'));
     }
 }
