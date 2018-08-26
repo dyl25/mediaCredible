@@ -9,7 +9,7 @@ class Media extends Model
     public $table = 'medias';
 
     public function contents() {
-        $this->hasMany(Content::class);
+        return $this->hasMany(Content::class);
     }
 
     public function logoPath() {

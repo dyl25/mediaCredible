@@ -10,10 +10,10 @@
             <div class="collapse navbar-collapse" id="mainNavbar">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Medias</a>
+                        <a href="{{ route('medias') }}" class="nav-link">Medias</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Contenus</a>
+                        <a href="{{ route('contents') }}" class="nav-link">Contenus</a>
                     </li>
                 </ul>
                 <form class="form-inline mt-2 mt-md-0">

@@ -16,3 +16,5 @@ Route::get('/', 'HomeController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/medias', 'MediaController@index')->name('medias');
+Route::get('/contents', 'ContentController@index')->name('contents');
