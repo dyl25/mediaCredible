@@ -15,6 +15,7 @@ Route::get('/', 'HomeController@index');
 
 Route::name('admin.')->group(function() {
     Route::get('/backoffice', 'Admin\DashboardController@index')->name('dashboard');
+    Route::resource('/backoffice/medias', 'Admin\MediaController');
 });
 
 Auth::routes();
