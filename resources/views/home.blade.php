@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+Accueil MediCredible
+@endsection
+
 @section('content')
 <section class="container">
     <div class="row py-4">
