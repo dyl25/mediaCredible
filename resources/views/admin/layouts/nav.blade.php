@@ -28,10 +28,10 @@
                         </a>
                         <ul class="manage-command collapse" id="collapseMedias">
                             <li class="nav-item">
-                                <a class="nav-link">Ajouter</a>
+                                <a href="{{ route('admin.medias.index') }}" class="nav-link">Gérer</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link">supprimer</a>
+                                <a href="{{ route('admin.medias.create') }}" class="nav-link">Ajouter</a>
                             </li>
                         </ul>
                     </li>

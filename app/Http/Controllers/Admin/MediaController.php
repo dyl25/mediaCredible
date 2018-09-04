@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Media;
 
 class MediaController extends Controller
 {
@@ -14,7 +15,9 @@ class MediaController extends Controller
      */
     public function index()
     {
-        //
+        $medias = Media::get();
+
+        return view('admin.media.index', compact('medias'));
     }
 
     /**
@@ -24,7 +27,7 @@ class MediaController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.media.create');
     }
 
     /**
