@@ -18,7 +18,7 @@ class CreateMediasTable extends Migration
             $table->string('name', 50);
             $table->string('website');
             $table->string('logo');
-            $table->integer('rate');
+            $table->integer('rate')->default(500);
             $table->timestamps();
         });
     }

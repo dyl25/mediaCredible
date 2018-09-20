@@ -7,10 +7,18 @@ Ajout d'un média
 @section('content')
 <div class="card bg-light p-3 mt-3">
     <h2>Ajout d'un média</h2>
-    <form>
+
+    @if($errors->any())
+        @include('admin.layouts.errors')
+    @endif
+
+    <form action="{{ route('admin.medias.store') }}" method="POST" enctype="multipart/form-data">
+
+        @csrf
+
         <div class="form-group">
             <label for="name">Nom</label>
-            <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
+            <input type="text" class="form-control" name="mediaName" id="mediaName" aria-describedby="emailHelp" value="{{ old('mediaName') }}">
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
 
@@ -22,16 +30,16 @@ Ajout d'un média
                         <i class="fas fa-link"></i>
                     </div>
                 </div>
-                <input type="text" class="form-control" id="url">
+                <input type="text" class="form-control" name="mediaUrl" id="mediaUrl" value="{{ old('mediaUrl') }}">
             </div>
         </div>
 
         <div class="form-group">
             <label for="image">Example file input</label>
-            <input type="file" class="form-control-file" id="image">
+            <input type="file" accept="image/*" class="form-control-file" name="logo" id="logo">
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-success">Ajouter</button>
     </form>
 </div>
 @endsection

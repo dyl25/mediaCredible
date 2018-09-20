@@ -7,6 +7,7 @@ Gestion des médias
 @section('content')
 <div class="card bg-light p-3 mt-3">
     <h2>Médias</h2>
+    <a class="btn btn-success" href="{{ route('admin.medias.create') }}" ><i class="fas fa-plus fa-lg"></i> Ajouter un média</a>
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
@@ -33,10 +34,10 @@ Gestion des médias
                     <td>{{ $media->created_at->format('j/n/Y') }}</td>
                     <td>
                         <a href="#" data-toggle="tooltip" data-placement="top" title="Editer">
-                            <i class="fas fa-pen fa-2x text-success"></i>
+                            <i class="fas fa-pen fa-lg text-success"></i>
                         </a>
                         <a href="#" data-toggle="tooltip" data-placement="bottom" title="Supprimer">
-                            <i class="fas fa-trash fa-2x text-danger"></i>
+                            <i class="fas fa-trash fa-lg text-danger"></i>
                         </a>
                     </td>
                 </tr>

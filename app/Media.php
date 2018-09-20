@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Media extends Model
 {
-    public $table = 'medias';
+    protected $table = 'medias';
+    protected $guarded = [];
 
     public function contents() {
         return $this->hasMany(Content::class);

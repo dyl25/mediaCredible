@@ -38,7 +38,25 @@ class MediaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'mediaName' => 'bail|required|min:2|max:191',
+            'mediaUrl' => 'bail|required|min:5',
+            'logo' => 'required|image'
+        ]);
+
+        //store logo in img folder
+        $file = $request->file('logo');
+        $extension = $file->getClientOriginalExtension();
+        $fileName = time().'.'.$extension;
+        $file->move('img/medias/', $fileName);
+
+        Media::create([
+            'name' => request('mediaName'),
+            'website' => request('mediaUrl'),
+            'logo' => $file
+        ]);
+
+        return redirect()->route('admin.medias.index');
     }
 
     /**
