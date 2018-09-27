@@ -20,7 +20,8 @@ class CreateContentsTable extends Migration
             $table->string('title');
             $table->string('url');
             $table->string('url_image')->nullable();
-            $table->integer('rate');
+            $table->integer('up_votes')->default(0);
+            $table->integer('down_votes')->default(0);
             $table->timestamps();
         });
     }

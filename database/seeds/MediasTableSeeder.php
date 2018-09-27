@@ -19,70 +19,80 @@ class MediasTableSeeder extends Seeder
         DB::table('medias')->insert([
             "name" => "Fr3",
             "website" => "https://www.france.tv/france-3/",
-            "rate" => 587,
+            "up_votes" => 587,
+            "down_votes" => 153,
             "logo" => "fr3.jpg",
             "created_at" => $faker->dateTimeBetween('-3 years')
         ]);
         DB::table('medias')->insert([
             "name" => "La Deux",
             "website" => "https://www.rtbf.be/tv/ladeux/",
-            "rate" => 723,
+            "up_votes" => 667,
+            "down_votes" => 213,
             "logo" => "La2.png",
             "created_at" => $faker->dateTimeBetween('-3 years')
         ]);
         DB::table('medias')->insert([
             "name" => "La Une",
             "website" => "https://www.rtbf.be/tv/laune",
-            "rate" => 234,
+            "up_votes" => 50,
+            "down_votes" => 473,
             "logo" => "laune.png",
             "created_at" => $faker->dateTimeBetween('-3 years')
         ]);
         DB::table('medias')->insert([
             "name" => "DH",
             "website" => "http://www.dhnet.be/",
-            "rate" => 456,
+            "up_votes" => 360,
+            "down_votes" => 71,
             "logo" => "logo-dh.jpg",
             "created_at" => $faker->dateTimeBetween('-3 years')
         ]);
         DB::table('medias')->insert([
             "name" => "M6",
             "website" => "https://www.6play.fr/m6",
-            "rate" => 114,
+            "up_votes" => 369,
+            "down_votes" => 756,
             "logo" => "M6.png",
             "created_at" => $faker->dateTimeBetween('-3 years')
         ]);
         DB::table('medias')->insert([
             "name" => "RTBF",
             "website" => "https://www.rtbf.be/",
-            "rate" => 988,
+            "up_votes" => 741,
+            "down_votes" => 289,
             "logo" => "rtbf.jpg",
             "created_at" => $faker->dateTimeBetween('-3 years')
         ]);
         DB::table('medias')->insert([
             "name" => "RTL",
             "website" => "https://www.rtl.be/info/index.htm",
-            "rate" => 329,
+            "up_votes" => 165,
+            "down_votes" => 432,
             "logo" => "rtl.jpg",
             "created_at" => $faker->dateTimeBetween('-3 years')
         ]);
         DB::table('medias')->insert([
             "name" => "TF1",
             "website" => "https://www.tf1.fr/news",
-            "rate" => 654,
+            "up_votes" => 421,
+            "down_votes" => 138,
             "logo" => "tf1.jpg",
             "created_at" => $faker->dateTimeBetween('-3 years')
         ]);
         DB::table('medias')->insert([
             "name" => "Le Monde",
             "website" => "https://www.lemonde.fr/",
-            "rate" => 753,
+            "up_votes" => 869,
+            "down_votes" => 357,
             "logo" => "le_monde-logo.jpg",
             "created_at" => $faker->dateTimeBetween('-3 years')
         ]);
         DB::table('medias')->insert([
             "name" => "CNN",
             "website" => "https://edition.cnn.com/",
-            "rate" => 854,
+            "up_votes" => 791,
+            "down_votes" => 253,
             "logo" => "cnn-logo.jpg",
             "created_at" => $faker->dateTimeBetween('-3 years')
         ]);

@@ -8,7 +8,8 @@ $factory->define(App\Content::class, function (Faker $faker) {
         'title' => $faker->sentence(4),
         'url' => $faker->url,
         'url_image' => $faker->imageUrl,
-        'rate' => rand(300, 900),
+        'up_votes' => rand(300, 900),
+        'down_votes' => rand(300, 900),
         'created_at' => $faker->dateTimeBetween('-2 years')
     ];
 });
