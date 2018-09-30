@@ -49,6 +49,9 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('home') }}" class="nav-link">Accueil</a>
+                    </li>
                 </ul>
             </div>
         </nav>

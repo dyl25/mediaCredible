@@ -7,6 +7,9 @@ Gestion des médias
 @section('content')
 <div class="card bg-light p-3 mt-3">
     <h2>Médias</h2>
+    @if(session('notification')) 
+        @include('admin.layouts.notification')
+    @endif
     <a class="btn btn-success" href="{{ route('admin.medias.create') }}" ><i class="fas fa-plus fa-lg"></i> Ajouter un média</a>
     <div class="table-responsive">
         <table class="table table-hover">
@@ -15,7 +18,8 @@ Gestion des médias
                     <th>Id</th>
                     <th>Nom</th>
                     <th>Site</th>
-                    <th>Crédibilité</th>
+                    <th><i class="fas fa-arrow-up text-success"></i> Upvotes</th>
+                    <th><i class="fas fa-arrow-down text-danger"></i> Downvotes</th>
                     <th>Date d'ajout</th>
                     <th>Actions</th>
                 </tr>
@@ -29,11 +33,14 @@ Gestion des médias
                         <a href="{{ $media->website }}">{{ $media->website }}</a>
                     </td>
                     <td>
-                        <span class="text-success">{{ $media->rate }}</span>
+                        <span class="text-success">{{ $media->up_votes }}</span>
+                    </td>
+                    <td>
+                        <span class="text-danger">{{ $media->down_votes }}</span>
                     </td>
                     <td>{{ $media->created_at->format('j/n/Y') }}</td>
                     <td>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Editer">
+                        <a href="{{ route('admin.medias.edit', $media->id) }}" data-toggle="tooltip" data-placement="top" title="Editer">
                             <i class="fas fa-pen fa-lg text-success"></i>
                         </a>
                         <a href="#" data-toggle="tooltip" data-placement="bottom" title="Supprimer">

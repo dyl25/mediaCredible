@@ -53,8 +53,10 @@ class MediaController extends Controller
         Media::create([
             'name' => request('mediaName'),
             'website' => request('mediaUrl'),
-            'logo' => $file
+            'logo' => $fileName
         ]);
+
+        session()->flash('notification', "Nouveau média créé");
 
         return redirect()->route('admin.medias.index');
     }
@@ -76,9 +78,9 @@ class MediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Media $media)
     {
-        //
+        return view('admin.media.edit', compact('media'));
     }
 
     /**
@@ -88,9 +90,34 @@ class MediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Media $media)
     {
-        //
+        $this->validate($request, [
+            'mediaName' => 'bail|required|min:2|max:191',
+            'mediaUrl' => 'bail|required|min:5',
+            'logo' => 'nullable|image'
+        ]);
+
+        if($request->hasFile('logo')) {
+            $mediaDir = 'img/medias/';
+
+            $file = $request->file('logo');
+            $extension = $file->getClientOriginalExtension();
+            $fileName = time().'.'.$extension;
+            $file->move($mediaDir, $fileName);
+
+            unlink(public_path($mediaDir.$media->logo));
+            $media->logo = $fileName;
+        }
+
+        $media->name = request('mediaName');
+        $media->website = request('mediaUrl');
+
+        $media->save();
+
+        session()->flash('notification', "Média mis à jour!");
+
+        return redirect()->route('admin.medias.index');
     }
 
     /**
