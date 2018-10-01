@@ -43,9 +43,13 @@ Gestion des médias
                         <a href="{{ route('admin.medias.edit', $media->id) }}" data-toggle="tooltip" data-placement="top" title="Editer">
                             <i class="fas fa-pen fa-lg text-success"></i>
                         </a>
-                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Supprimer">
-                            <i class="fas fa-trash fa-lg text-danger"></i>
-                        </a>
+                        <form class="d-inline" action="{{ route('admin.medias.destroy', $media->id) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button class="btn btn-link" type="submit" data-toggle="tooltip" data-placement="bottom" title="Supprimer">
+                                <i class="fas fa-trash fa-lg text-danger"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach

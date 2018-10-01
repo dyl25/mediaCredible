@@ -126,8 +126,16 @@ class MediaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Media $media)
     {
-        //
+        if($media->logo) {
+            unlink(public_path('img/medias/'.$media->logo));
+        }
+
+        $media->delete();
+
+        session()->flash('notification', 'Le média a bien été supprimé!');
+
+        return redirect()->route('admin.medias.index');
     }
 }
