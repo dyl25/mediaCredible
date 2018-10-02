@@ -42,10 +42,10 @@
                         </a>
                         <ul class="manage-command collapse" id="collapseContent">
                             <li class="nav-item">
-                                <a class="nav-link">Ajouter</a>
+                                <a href="{{ route('admin.contents.index') }}" class="nav-link">Gérer</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link">supprimer</a>
+                                <a href="{{ route('admin.contents.create') }}" class="nav-link">Ajouter</a>
                             </li>
                         </ul>
                     </li>
