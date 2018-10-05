@@ -30,7 +30,7 @@ Présentation des contenus
                 @foreach($contents as $content)
                 <tr>
                     <td>{{ $content->id }}</td>
-                    <td><img class="img-fluid" src="{{ asset('img/medias/'.$content->media->logo) }}" alt="">{{ $content->media->name }}</td>
+                    <td><img class="img-fluid" src="{{ asset('img/medias/'.$content->media->logo) }}" alt="Logo du média"></td>
                     <td>{{ $content->title }}</td>
                     <td>
                         <a href="{{ $content->url }}">{{ str_limit($content->url, 20) }}</a>

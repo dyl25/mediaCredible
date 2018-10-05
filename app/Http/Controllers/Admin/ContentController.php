@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Content;
+use App\Media;
 
 class ContentController extends Controller
 {
@@ -15,7 +16,7 @@ class ContentController extends Controller
      */
     public function index()
     {
-        $contents = Content::with('media')->get();
+        $contents = Content::with('media')->limit(10)->get();
 
         return view('admin.content.index', compact('contents'));
     }
@@ -27,7 +28,9 @@ class ContentController extends Controller
      */
     public function create()
     {
-        //
+        $medias = Media::get();
+        
+        return view('admin.content.create', compact('medias'));
     }
 
     /**
@@ -38,7 +41,23 @@ class ContentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            "media" => "bail|required|exists:medias,id|max:1",
+            'title' => "bail|required|max:191|min:5",
+            'contentUrl' => 'bail|required|url',
+            'imageUrl' => 'bail|required|url',
+        ]);
+
+        Content::create([
+            'media_id' => request('media'),
+            'title' => request('title'),
+            'url' => request('contentUrl'),
+            'url_image' => request('imageUrl')
+        ]);
+
+        session()->flash('notification', "Le contenu a bien été créé!");
+
+        return redirect()->route('admin.contents.store');
     }
 
     /**
@@ -58,7 +77,7 @@ class ContentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Content $content)
     {
         //
     }
@@ -70,7 +89,7 @@ class ContentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Content $content)
     {
         //
     }
@@ -81,7 +100,7 @@ class ContentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Content $content)
     {
         //
     }

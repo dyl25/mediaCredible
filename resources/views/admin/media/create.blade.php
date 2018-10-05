@@ -23,7 +23,7 @@ Ajout d'un média
         </div>
 
         <div class="form-group">
-            <label for="url">Url du site du médias</label>
+            <label for="mediaUrl">Url du site du médias</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
@@ -39,7 +39,7 @@ Ajout d'un média
             <input type="file" accept="image/*" class="form-control-file" name="logo" id="logo">
         </div>
 
-        <button type="submit" class="btn btn-success">Ajouter</button>
+        <button type="submit" class="btn btn-success" name="btSendMedia">Ajouter</button>
     </form>
 </div>
 @endsection
