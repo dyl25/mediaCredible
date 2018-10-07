@@ -20,9 +20,9 @@ Création d'un contenu
         <div class="form-group">
             <label for="media">Média associé</label>
             <select class="form-control col-md-2" name="media" id="media">
-                <option value="" disabled>Choisir un média</option>
-                @foreach($medias as $media)
-                <option value="{{ $media->id }}">{{ $media->name }}</option>
+                <option value="">Choisir un média</option>
+                @foreach($medias as $key => $media)
+                <option value="{{ $media->id }}" {{ old('media') ==  $key ? "selected" : "" }} >{{ $media->name }}</option>
                 @endforeach
             </select>
         </div>

@@ -40,7 +40,7 @@ class MediaController extends Controller
     {
         $this->validate($request, [
             'mediaName' => 'bail|required|min:2|max:191',
-            'mediaUrl' => 'bail|required|url',
+            'mediaUrl' => 'bail|required|url|unique:medias,website',
             'logo' => 'required|image'
         ]);
 

@@ -44,8 +44,8 @@ class ContentController extends Controller
         $this->validate($request, [
             "media" => "bail|required|exists:medias,id|max:1",
             'title' => "bail|required|max:191|min:5",
-            'contentUrl' => 'bail|required|url',
-            'imageUrl' => 'bail|required|url',
+            'contentUrl' => 'bail|required|url|unique:contents,url',
+            'imageUrl' => 'required|url',
         ]);
 
         Content::create([

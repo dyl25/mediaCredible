@@ -6,7 +6,7 @@ $factory->define(App\Content::class, function (Faker $faker) {
     return [
         'media_id' => rand(1, 10),
         'title' => $faker->sentence(4),
-        'url' => $faker->url,
+        'url' => $faker->unique()->url,
         'url_image' => $faker->imageUrl,
         'up_votes' => rand(300, 900),
         'down_votes' => rand(300, 900),

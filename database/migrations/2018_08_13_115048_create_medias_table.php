@@ -15,8 +15,8 @@ class CreateMediasTable extends Migration
     {
         Schema::create('medias', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 50);
-            $table->string('website');
+            $table->string('name', 50)->unique();
+            $table->string('website')->unique();
             $table->string('logo');
             $table->integer('up_votes')->default(0);
             $table->integer('down_votes')->default(0);
