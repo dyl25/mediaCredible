@@ -39,7 +39,7 @@ class MediaController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'mediaName' => 'bail|required|min:2|max:191',
+            'mediaName' => 'bail|required|min:2|max:191|unique:medias,name',
             'mediaUrl' => 'bail|required|url|unique:medias,website',
             'logo' => 'required|image'
         ]);
@@ -93,8 +93,8 @@ class MediaController extends Controller
     public function update(Request $request, Media $media)
     {
         $this->validate($request, [
-            'mediaName' => 'bail|required|min:2|max:191',
-            'mediaUrl' => 'bail|required|url',
+            'mediaName' => 'bail|required|min:2|max:191|unique:medias,name,'.$media->id,
+            'mediaUrl' => 'bail|required|url|unique:medias,website,'.$media->id,
             'logo' => 'nullable|image'
         ]);
 

@@ -29,7 +29,7 @@ class ContentController extends Controller
     public function create()
     {
         $medias = Media::get();
-        
+
         return view('admin.content.create', compact('medias'));
     }
 
@@ -42,10 +42,10 @@ class ContentController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            "media" => "bail|required|exists:medias,id|max:1",
+            'media' => 'bail|required|exists:medias,id|max:1',
             'title' => "bail|required|max:191|min:5",
             'contentUrl' => 'bail|required|url|unique:contents,url',
-            'imageUrl' => 'required|url',
+            'imageUrl' => 'required|url'
         ]);
 
         Content::create([
@@ -79,7 +79,9 @@ class ContentController extends Controller
      */
     public function edit(Content $content)
     {
-        //
+        $medias = Media::get();
+
+        return view('admin.content.edit', compact('medias', 'content'));
     }
 
     /**
@@ -91,7 +93,23 @@ class ContentController extends Controller
      */
     public function update(Request $request, Content $content)
     {
-        //
+        $this->validate($request, [
+            'media' => 'bail|required|exists:medias,id|max:1',
+            'title' => "bail|required|max:191|min:5",
+            'contentUrl' => 'bail|required|url|unique:contents,url,'.$content->id,
+            'imageUrl' => 'required|url'
+        ]);
+
+        $content->update([
+            'media_id' => request('media'),
+            'title' => request('title'),
+            'url' => request('contentUrl'),
+            'url_image' => request('imageUrl')
+        ]);
+
+        session()->flash('notification', 'Contenu mis à jour!');
+
+        return redirect()->route('admin.contents.index');
     }
 
     /**

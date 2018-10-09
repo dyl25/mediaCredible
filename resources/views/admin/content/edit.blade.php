@@ -1,19 +1,19 @@
 @extends('admin.layouts.app')
 
 @section('title')
-Création d'un contenu
+Modificiation d'un contenu
 @endsection
 
 @section('content')
 <div class="card bg-light p-3 mt-3">
-    <h2>Ajout d'un contenu</h2>
+    <h2>Modificiation d'un contenu</h2>
 
     @if($errors->any())
         @include('admin.layouts.errors')
     @endif
 
-    <form action="{{ route('admin.contents.store') }}" method="POST">
-
+    <form action="{{ route('admin.contents.update', $content->id) }}" method="POST">
+        @method('PATCH')
         @csrf
 
         <!-- Nom -->
@@ -21,8 +21,8 @@ Création d'un contenu
             <label for="media">Média associé</label>
             <select class="form-control col-md-2" name="media" id="media">
                 <option value="">Choisir un média</option>
-                @foreach($medias as $media)
-                <option value="{{ $media->id }}" {{ old('media') ==  $media->id ? "selected" : "" }} >{{ $media->name }}</option>
+                @foreach($medias as $key => $media)
+                <option value="{{ $media->id }}" {{ $content->media->id ==  $media->id ? "selected" : "" }} >{{ $media->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -30,7 +30,7 @@ Création d'un contenu
         <!-- Titre -->
         <div class="form-group">
             <label for="title">Titre</label>
-            <input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp" value="{{ old('title') }}">
+            <input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp" value="{{ $content->title }}">
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
         </div>
 
@@ -43,7 +43,7 @@ Création d'un contenu
                         <i class="fas fa-link"></i>
                     </div>
                 </div>
-                <input type="text" class="form-control" name="contentUrl" id="contentUrl" value="{{ old('contentUrl') }}">
+                <input type="text" class="form-control" name="contentUrl" id="contentUrl" value="{{ $content->url }}">
             </div>
         </div>
 
@@ -56,12 +56,12 @@ Création d'un contenu
                         <i class="fas fa-link"></i>
                     </div>
                 </div>
-                <input type="text" class="form-control" name="imageUrl" id="imageUrl" value="{{ old('imageUrl') }}">
+                <input type="text" class="form-control" name="imageUrl" id="imageUrl" value="{{ $content->url_image }}">
             </div>
         </div>
 
         <!-- Envoi -->
-        <button type="submit" class="btn btn-success" name="btSendContent">Ajouter</button>
+        <button type="submit" class="btn btn-success" name="btSendContent">Modifier</button>
     </form>
 </div>
 @endsection
