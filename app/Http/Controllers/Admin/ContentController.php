@@ -120,6 +120,10 @@ class ContentController extends Controller
      */
     public function destroy(Content $content)
     {
-        //
+        $content->delete();
+
+        session()->flash('notification', 'Le contenu à bien été supprimé!');
+
+        return redirect()->route('admin.contents.index');
     }
 }
