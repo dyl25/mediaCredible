@@ -4,6 +4,10 @@
 Gestion des médias
 @endsection
 
+@section('script')
+<script src="{{ asset('js/manageMedias.js') }}" async></script>
+@endsection
+
 @section('content')
 <section class="card bg-light p-3 mt-3">
     <h2>Médias</h2>
