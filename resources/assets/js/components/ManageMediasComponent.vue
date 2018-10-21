@@ -13,28 +13,26 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>blabla</td>
+                <tr v-for="media in medias">
+                    <td>{{ media.id }}</td>
+                    <td>{{ media.name }}</td>
                     <td>
-                        <a href="#">fsdfsdff</a>
+                        <a href="#">{{ media.website }}</a>
                     </td>
                     <td>
-                        <span class="text-success">402</span>
+                        <span class="text-success">{{ media.up_votes }}</span>
                     </td>
                     <td>
-                        <span class="text-danger">205</span>
+                        <span class="text-danger">{{ media.down_votes }}</span>
                     </td>
-                    <td>3/9/2018</td>
+                    <td>{{ media.created_at }}</td>
                     <td>
                         <a href="#" data-toggle="tooltip" data-placement="top" title="Editer">
                             <i class="fas fa-pen fa-lg text-success"></i>
                         </a>
-                        <form class="d-inline" action="#" method="POST">
-                            <button class="btn btn-link" type="submit" data-toggle="tooltip" data-placement="bottom" title="Supprimer">
-                                <i class="fas fa-trash fa-lg text-danger"></i>
-                            </button>
-                        </form>
+                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Supprimer">
+                            <i class="fas fa-trash fa-lg text-danger"></i>
+                        </a>
                     </td>
                 </tr>
             </tbody>
@@ -43,19 +41,31 @@
 </template>
 
 <script>
-export default {
-    mounted() {
-        this.loadMedias();
-        console.log("Component mounted.");
-        this.loadMedias();
-    },
-    methods: {
-        loadMedias() {
-            /*let response = await fetch('/api/medias');
-            console.log(response);*/
-            fetch('/api/medias')
-                .then(response => console.log(response));
+    export default {
+        data() {
+            return {
+                medias: []
+            }
+        },
+        mounted() {
+            this.loadMedias();
+            console.log(this.medias);
+        },
+        methods: {
+            loadMedias() {
+                fetch('/api/medias')
+                    .then(response => {
+                        if(response.ok) {
+                            this.medias = response.json  
+                        }  
+                    })
+                    .catch( error => 
+                        console.log("Problème lors du chargement des médias: "+ error.message)
+                    );
+            }
+            /*deleteMedia() {
+                fetch();
+            }*/
         }
-    }
-};
+    };
 </script>

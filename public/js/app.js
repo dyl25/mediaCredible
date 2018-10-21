@@ -11762,13 +11762,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log("Component mounted.");
-  }
+    data: function data() {
+        return {
+            medias: []
+        };
+    },
+    mounted: function mounted() {
+        this.loadMedias();
+        console.log(this.medias);
+    },
+
+    methods: {
+        loadMedias: function loadMedias() {
+            var _this = this;
+
+            fetch('/api/medias').then(function (response) {
+                if (response.ok) {
+                    _this.medias = response.json;
+                }
+            }).catch(function (error) {
+                return console.log("Problème lors du chargement des médias: " + error.message);
+            });
+        }
+        /*deleteMedia() {
+            fetch();
+        }*/
+
+    }
 });
 
 /***/ }),
@@ -11779,97 +11801,102 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "table-responsive" }, [
+    _c("table", { staticClass: "table table-hover" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.medias, function(media) {
+          return _c("tr", [
+            _c("td", [_vm._v(_vm._s(media.id))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(media.name))]),
+            _vm._v(" "),
+            _c("td", [
+              _c("a", { attrs: { href: "#" } }, [_vm._v(_vm._s(media.website))])
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _c("span", { staticClass: "text-success" }, [
+                _vm._v(_vm._s(media.up_votes))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _c("span", { staticClass: "text-danger" }, [
+                _vm._v(_vm._s(media.down_votes))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(media.created_at))]),
+            _vm._v(" "),
+            _vm._m(1, true)
+          ])
+        })
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "table-responsive" }, [
-      _c("table", { staticClass: "table table-hover" }, [
-        _c("thead", [
-          _c("tr", [
-            _c("th", [_vm._v("Id")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Nom")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Site")]),
-            _vm._v(" "),
-            _c("th", [
-              _c("i", { staticClass: "fas fa-arrow-up text-success" }),
-              _vm._v(" Upvotes")
-            ]),
-            _vm._v(" "),
-            _c("th", [
-              _c("i", { staticClass: "fas fa-arrow-down text-danger" }),
-              _vm._v(" Downvotes")
-            ]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Date d'ajout")]),
-            _vm._v(" "),
-            _c("th", [_vm._v("Actions")])
-          ])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Id")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nom")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Site")]),
+        _vm._v(" "),
+        _c("th", [
+          _c("i", { staticClass: "fas fa-arrow-up text-success" }),
+          _vm._v(" Upvotes")
         ]),
         _vm._v(" "),
-        _c("tbody", [
-          _c("tr", [
-            _c("td", [_vm._v("1")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("blabla")]),
-            _vm._v(" "),
-            _c("td", [_c("a", { attrs: { href: "#" } }, [_vm._v("fsdfsdff")])]),
-            _vm._v(" "),
-            _c("td", [
-              _c("span", { staticClass: "text-success" }, [_vm._v("402")])
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _c("span", { staticClass: "text-danger" }, [_vm._v("205")])
-            ]),
-            _vm._v(" "),
-            _c("td", [_vm._v("3/9/2018")]),
-            _vm._v(" "),
-            _c("td", [
-              _c(
-                "a",
-                {
-                  attrs: {
-                    href: "#",
-                    "data-toggle": "tooltip",
-                    "data-placement": "top",
-                    title: "Editer"
-                  }
-                },
-                [_c("i", { staticClass: "fas fa-pen fa-lg text-success" })]
-              ),
-              _vm._v(" "),
-              _c(
-                "form",
-                {
-                  staticClass: "d-inline",
-                  attrs: { action: "#", method: "POST" }
-                },
-                [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-link",
-                      attrs: {
-                        type: "submit",
-                        "data-toggle": "tooltip",
-                        "data-placement": "bottom",
-                        title: "Supprimer"
-                      }
-                    },
-                    [_c("i", { staticClass: "fas fa-trash fa-lg text-danger" })]
-                  )
-                ]
-              )
-            ])
-          ])
-        ])
+        _c("th", [
+          _c("i", { staticClass: "fas fa-arrow-down text-danger" }),
+          _vm._v(" Downvotes")
+        ]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Date d'ajout")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Actions")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c(
+        "a",
+        {
+          attrs: {
+            href: "#",
+            "data-toggle": "tooltip",
+            "data-placement": "top",
+            title: "Editer"
+          }
+        },
+        [_c("i", { staticClass: "fas fa-pen fa-lg text-success" })]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          attrs: {
+            href: "#",
+            "data-toggle": "tooltip",
+            "data-placement": "bottom",
+            title: "Supprimer"
+          }
+        },
+        [_c("i", { staticClass: "fas fa-trash fa-lg text-danger" })]
+      )
     ])
   }
 ]

@@ -11,6 +11,6 @@ Gestion des médias
         @include('admin.layouts.notification')
     @endif
     <a class="btn btn-success" href="{{ route('admin.medias.create') }}" ><i class="fas fa-plus fa-lg"></i> Ajouter un média</a>
-    <Manage-Medias></Manage-Medias>
+    <manage-medias></manage-medias>
 </section>
 @endsection
