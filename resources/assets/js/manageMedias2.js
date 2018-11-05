@@ -1,4 +1,5 @@
-import { MediaService } from './class/services/MediaService.js'
+import { MediaService } from './class/services/MediaService.js';
+import { createNotification } from './helpers';
 
 const mediaService = new MediaService();
 
@@ -13,10 +14,13 @@ function deleteMedia(id) {
     mediaService.deleteMedia(id)
         .then(response => {
             console.log(response);
-            /*if (response.ok) {
-                createNotification("Le média a bien été supprimé!");
+
+            $alertContainer = document.getElementById('alertContainer');
+
+            if (response.ok) {
+                createNotification($alertContainer, "Le média a bien été supprimé!");
             } else {
-                createNotification("Une erreur s'est produite, veuillez réessayer plus tard.", false);
-            }*/
+                createNotification($alertContainer, "Une erreur s'est produite, veuillez réessayer plus tard.", false);
+            }
         });
 }

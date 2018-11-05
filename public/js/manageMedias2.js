@@ -60,23 +60,69 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(1);
-
-
-/***/ }),
-/* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__class_services_MediaService_js__ = __webpack_require__(2);
+/* harmony export (immutable) */ __webpack_exports__["createNotification"] = createNotification;
+
+/**
+* Create a Html element who display a message
+* 
+* @param {Object} $target Node who will contain the message
+* @param {string} message The message to display
+* @param {bool} success The status of the message
+*/
+function createNotification($target, message) {
+    var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
+
+    var $div = document.createElement('div');
+    var $notifMessage = document.createElement('p');
+
+    $div.classList.add('alert', 'text-center');
+
+    $notifMessage.classList.add('my-auto');
+    $notifMessage.textContent = message;
+
+    $div.appendChild($notifMessage);
+
+    if (success) {
+        $div.classList.add('alert-success');
+    } else {
+        $div.classList.add('alert-danger');
+    }
+
+    $target = document.getElementById('alertContainer');
+
+    if (!$target.hasChildNodes()) {
+        $target.appendChild($div);
+    } else {
+        $target.replaceChild($div, $target.childNodes[0]);
+    }
+}
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(2);
+module.exports = __webpack_require__(0);
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__class_services_MediaService_js__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers__ = __webpack_require__(0);
+
 
 
 var mediaService = new __WEBPACK_IMPORTED_MODULE_0__class_services_MediaService_js__["a" /* MediaService */]();
@@ -97,18 +143,19 @@ function deleteMedia(id) {
     console.log(id);
     mediaService.deleteMedia(id).then(function (response) {
         console.log(response);
-        /*if (response.ok) {
-            createNotification("Le média a bien été supprimé!");
+
+        $alertContainer = document.getElementById('alertContainer');
+
+        if (response.ok) {
+            Object(__WEBPACK_IMPORTED_MODULE_1__helpers__["createNotification"])($alertContainer, "Le média a bien été supprimé!");
         } else {
-            createNotification("Une erreur s'est produite, veuillez réessayer plus tard.", false);
-        }*/
+            Object(__WEBPACK_IMPORTED_MODULE_1__helpers__["createNotification"])($alertContainer, "Une erreur s'est produite, veuillez réessayer plus tard.", false);
+        }
     });
 }
-//onclick = "deleteMedia({{ $media->id }})"
-//mediaService.deleteMedia(1);
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
