@@ -5,7 +5,8 @@ Gestion des médias
 @endsection
 
 @section('script')
-<script src="{{ asset('js/manageMedias.js') }}" async></script>
+<!--<script src="{{ asset('js/manageMedias.js') }}" async></script>-->
+<script src="{{ asset('js/manageMedias2.js') }}" async></script>
 @endsection
 
 @section('content')
@@ -14,6 +15,7 @@ Gestion des médias
     @if(session('notification')) 
         @include('admin.layouts.notification')
     @endif
+    <section id="alertContainer"></section>
     <a class="btn btn-success" href="{{ route('admin.medias.create') }}" ><i class="fas fa-plus fa-lg"></i> Ajouter un média</a>
     <div class="table-responsive">
         <table class="table table-hover">
@@ -47,7 +49,7 @@ Gestion des médias
                         <a href="{{ route('admin.medias.edit', $media->id) }}" data-toggle="tooltip" data-placement="top" title="Editer">
                             <i class="fas fa-pen fa-lg text-success"></i>
                         </a>
-                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Supprimer" id="btDeleteMedia" data-media-id="{{ $media->id }}">
+                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Supprimer" class="bt-delete-media" data-media-id="{{ $media->id }}">
                             <i class="fas fa-trash fa-lg text-danger"></i>
                         </a>
                     </td>

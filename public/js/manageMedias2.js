@@ -81,7 +81,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var mediaService = new __WEBPACK_IMPORTED_MODULE_0__class_services_MediaService_js__["a" /* MediaService */]();
 
-mediaService.deleteMedia(1);
+var $btDeleteMedia = document.getElementsByClassName('bt-delete-media');
+
+var _loop = function _loop(i) {
+    $btDeleteMedia[i].onclick = function () {
+        return console.log($btDeleteMedia[i].dataset.mediaId);
+    };
+};
+
+for (var i = 0; i < $btDeleteMedia.length; i++) {
+    _loop(i);
+}
+
+function deleteMedia(id) {
+    console.log(id);
+    mediaService.deleteMedia(id).then(function (response) {
+        console.log(response);
+        /*if (response.ok) {
+            createNotification("Le média a bien été supprimé!");
+        } else {
+            createNotification("Une erreur s'est produite, veuillez réessayer plus tard.", false);
+        }*/
+    });
+}
+//onclick = "deleteMedia({{ $media->id }})"
+//mediaService.deleteMedia(1);
 
 /***/ }),
 /* 2 */
@@ -98,12 +122,33 @@ var MediaService = function () {
         _classCallCheck(this, MediaService);
 
         this._errorMessage = null;
+        this._headers = new Headers({
+            'Content-Type': 'application/json'
+        });
+        this._url = 'http://localhost/mediaCredible/public/api/medias';
     }
 
     _createClass(MediaService, [{
         key: 'deleteMedia',
-        value: function deleteMedia($id) {
-            return console.log('Media supprimé');
+        value: function deleteMedia(id) {
+            return fetch(this.url + '/' + id, {
+                method: 'DELETE',
+                headers: this.headers
+            });
+            /*.then(response => {
+                console.log(response);
+                if (response.ok) {
+                    createNotification("Le média a bien été supprimé!");
+                } else {
+                    createNotification("Une erreur s'est produite, veuillez réessayer plus tard.", false);
+                }
+            })
+            .catch(error => console.log(error));*/
+        }
+    }, {
+        key: 'logError',
+        value: function logError() {
+            return "";
         }
     }]);
 
