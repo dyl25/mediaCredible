@@ -17,8 +17,6 @@ export class MediaService {
     }
 
     deleteMedia(id) {
-        console.log('coucou2');
-        console.log(this.url);
         return fetch(this.url + '/' + id, {
             method: 'DELETE',
             headers: this.headers
