@@ -6,7 +6,6 @@ Gestion des médias
 
 @section('script')
 <!--<script src="{{ asset('js/manageMedias.js') }}" async></script>-->
-<script src="{{ asset('js/manageMedias2.js') }}" async></script>
 @endsection
 
 @section('content')

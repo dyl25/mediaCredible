@@ -7,6 +7,7 @@
 * @param {bool} success The status of the message
 */
 export function createNotification($target, message, success = true) {
+    console.log('coucou');
     let $div = document.createElement('div');
     let $notifMessage = document.createElement('p');
 
@@ -31,4 +32,15 @@ export function createNotification($target, message, success = true) {
         $target.replaceChild($div, $target.childNodes[0]);
     }
 
+}
+
+/**
+ * Remove an element with a css effect
+ * 
+ * @param {Object} target Node element to remove
+ */
+export function deleteNode(target) {
+    target.classList.add('disapear');
+
+    setTimeout(() => target.remove(this) , 600);
 }

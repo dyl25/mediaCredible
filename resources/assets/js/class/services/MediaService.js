@@ -8,20 +8,21 @@ export class MediaService {
         this._url = 'http://localhost/mediaCredible/public/api/medias';
     }
 
+    get url() {
+        return this._url;
+    }
+
+    get headers() {
+        return this._headers;
+    }
+
     deleteMedia(id) {
-        return fetch(this.url + '/'+ id, {
+        console.log('coucou2');
+        console.log(this.url);
+        return fetch(this.url + '/' + id, {
             method: 'DELETE',
             headers: this.headers
-        })
-            /*.then(response => {
-                console.log(response);
-                if (response.ok) {
-                    createNotification("Le média a bien été supprimé!");
-                } else {
-                    createNotification("Une erreur s'est produite, veuillez réessayer plus tard.", false);
-                }
-            })
-            .catch(error => console.log(error));*/
+        });
     }
 
     logError() {

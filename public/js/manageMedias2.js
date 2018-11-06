@@ -70,6 +70,7 @@
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (immutable) */ __webpack_exports__["createNotification"] = createNotification;
+/* harmony export (immutable) */ __webpack_exports__["deleteNode"] = deleteNode;
 
 /**
 * Create a Html element who display a message
@@ -81,6 +82,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 function createNotification($target, message) {
     var success = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
 
+    console.log('coucou');
     var $div = document.createElement('div');
     var $notifMessage = document.createElement('p');
 
@@ -104,6 +106,21 @@ function createNotification($target, message) {
     } else {
         $target.replaceChild($div, $target.childNodes[0]);
     }
+}
+
+/**
+ * Remove an element with a css effect
+ * 
+ * @param {Object} target Node element to remove
+ */
+function deleteNode(target) {
+    var _this = this;
+
+    target.classList.add('disapear');
+
+    setTimeout(function () {
+        return target.remove(_this);
+    }, 600);
 }
 
 /***/ }),
@@ -131,8 +148,11 @@ var $btDeleteMedia = document.getElementsByClassName('bt-delete-media');
 
 var _loop = function _loop(i) {
     $btDeleteMedia[i].onclick = function () {
-        return console.log($btDeleteMedia[i].dataset.mediaId);
+        return deleteMedia($btDeleteMedia[i].dataset.mediaId);
     };
+    //console.log($btDeleteMedia[i]);
+    // $btDeleteMedia[i].closest('tr')
+    //$btDeleteMedia[i].onclick = () => deleteNode($btDeleteMedia[i].closest('tr'));
 };
 
 for (var i = 0; i < $btDeleteMedia.length; i++) {
@@ -144,14 +164,19 @@ function deleteMedia(id) {
     mediaService.deleteMedia(id).then(function (response) {
         console.log(response);
 
-        $alertContainer = document.getElementById('alertContainer');
+        var $alertContainer = document.getElementById('alertContainer');
 
         if (response.ok) {
+            Object(__WEBPACK_IMPORTED_MODULE_1__helpers__["deleteNode"])(
+            //retrieve the <tr> line
+            document.querySelector('[data-media-id="' + id + '"]').closest('tr'));
             Object(__WEBPACK_IMPORTED_MODULE_1__helpers__["createNotification"])($alertContainer, "Le média a bien été supprimé!");
         } else {
             Object(__WEBPACK_IMPORTED_MODULE_1__helpers__["createNotification"])($alertContainer, "Une erreur s'est produite, veuillez réessayer plus tard.", false);
         }
-    });
+    }).catch(function (error) {
+        return console.log(error);
+    });;
 }
 
 /***/ }),
@@ -178,24 +203,27 @@ var MediaService = function () {
     _createClass(MediaService, [{
         key: 'deleteMedia',
         value: function deleteMedia(id) {
+            console.log('coucou2');
+            console.log(this.url);
             return fetch(this.url + '/' + id, {
                 method: 'DELETE',
                 headers: this.headers
             });
-            /*.then(response => {
-                console.log(response);
-                if (response.ok) {
-                    createNotification("Le média a bien été supprimé!");
-                } else {
-                    createNotification("Une erreur s'est produite, veuillez réessayer plus tard.", false);
-                }
-            })
-            .catch(error => console.log(error));*/
         }
     }, {
         key: 'logError',
         value: function logError() {
             return "";
+        }
+    }, {
+        key: 'url',
+        get: function get() {
+            return this._url;
+        }
+    }, {
+        key: 'headers',
+        get: function get() {
+            return this._headers;
         }
     }]);
 

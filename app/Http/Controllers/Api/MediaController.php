@@ -15,11 +15,11 @@ class MediaController extends Controller
 
     public function destroy(Media $media) {
 
-        /*if ($media->logo) {
+        if ($media->logo) {
             unlink(public_path('img/medias/' . $media->logo));
         }
 
-        $media->delete();*/
+        $media->delete();
 
         return response()->json(null, 204);
     }
