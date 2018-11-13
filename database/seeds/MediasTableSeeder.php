@@ -17,6 +17,7 @@ class MediasTableSeeder extends Seeder
         $faker = Faker::create();
 
         DB::table('medias')->insert([
+            "user_id" => rand(1, 50),
             "name" => "Fr3",
             "website" => "https://www.france.tv/france-3/",
             "up_votes" => 587,
@@ -25,6 +26,7 @@ class MediasTableSeeder extends Seeder
             "created_at" => $faker->dateTimeBetween('-3 years')
         ]);
         DB::table('medias')->insert([
+            "user_id" => rand(1, 50),
             "name" => "La Deux",
             "website" => "https://www.rtbf.be/tv/ladeux/",
             "up_votes" => 667,
@@ -33,6 +35,7 @@ class MediasTableSeeder extends Seeder
             "created_at" => $faker->dateTimeBetween('-3 years')
         ]);
         DB::table('medias')->insert([
+            "user_id" => rand(1, 50),
             "name" => "La Une",
             "website" => "https://www.rtbf.be/tv/laune",
             "up_votes" => 50,
@@ -41,6 +44,7 @@ class MediasTableSeeder extends Seeder
             "created_at" => $faker->dateTimeBetween('-3 years')
         ]);
         DB::table('medias')->insert([
+            "user_id" => rand(1, 50),
             "name" => "DH",
             "website" => "http://www.dhnet.be/",
             "up_votes" => 360,
@@ -49,6 +53,7 @@ class MediasTableSeeder extends Seeder
             "created_at" => $faker->dateTimeBetween('-3 years')
         ]);
         DB::table('medias')->insert([
+            "user_id" => rand(1, 50),
             "name" => "M6",
             "website" => "https://www.6play.fr/m6",
             "up_votes" => 369,
@@ -57,6 +62,7 @@ class MediasTableSeeder extends Seeder
             "created_at" => $faker->dateTimeBetween('-3 years')
         ]);
         DB::table('medias')->insert([
+            "user_id" => rand(1, 50),
             "name" => "RTBF",
             "website" => "https://www.rtbf.be/",
             "up_votes" => 741,
@@ -65,6 +71,7 @@ class MediasTableSeeder extends Seeder
             "created_at" => $faker->dateTimeBetween('-3 years')
         ]);
         DB::table('medias')->insert([
+            "user_id" => rand(1, 50),
             "name" => "RTL",
             "website" => "https://www.rtl.be/info/index.htm",
             "up_votes" => 165,
@@ -73,6 +80,7 @@ class MediasTableSeeder extends Seeder
             "created_at" => $faker->dateTimeBetween('-3 years')
         ]);
         DB::table('medias')->insert([
+            "user_id" => rand(1, 50),
             "name" => "TF1",
             "website" => "https://www.tf1.fr/news",
             "up_votes" => 421,
@@ -81,6 +89,7 @@ class MediasTableSeeder extends Seeder
             "created_at" => $faker->dateTimeBetween('-3 years')
         ]);
         DB::table('medias')->insert([
+            "user_id" => rand(1, 50),
             "name" => "Le Monde",
             "website" => "https://www.lemonde.fr/",
             "up_votes" => 869,
@@ -89,6 +98,7 @@ class MediasTableSeeder extends Seeder
             "created_at" => $faker->dateTimeBetween('-3 years')
         ]);
         DB::table('medias')->insert([
+            "user_id" => rand(1, 50),
             "name" => "CNN",
             "website" => "https://edition.cnn.com/",
             "up_votes" => 791,

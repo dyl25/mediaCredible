@@ -13,6 +13,11 @@
 
 Route::get('/', 'HomeController@index');
 
+Route::name('validators.')->group(function () {
+    Route::get('/validator', 'Validator\DashboardController@index')->name('dashboard');
+    Route::resource('/validator/contents', 'Validator\ContentController');
+});
+
 Route::name('admin.')->group(function() {
     Route::get('/backoffice', 'Admin\DashboardController@index')->name('dashboard');
     Route::resource('/backoffice/medias', 'Admin\MediaController');

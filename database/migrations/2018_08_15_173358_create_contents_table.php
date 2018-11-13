@@ -17,6 +17,8 @@ class CreateContentsTable extends Migration
             $table->increments('id');
             $table->integer('media_id')->unsigned();
             $table->foreign('media_id')->references('id')->on('medias')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade');
             $table->string('title');
             $table->string('url')->unique();
             $table->string('url_image')->nullable();

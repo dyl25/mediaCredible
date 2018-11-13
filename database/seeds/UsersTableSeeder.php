@@ -27,5 +27,15 @@ class UsersTableSeeder extends Seeder
             "password" => bcrypt("credib12"),
             "created_at" => new DateTime()
         ]);
+
+        for ($i = 0; $i < 50; $i++) {
+            \Illuminate\Support\Facades\DB::table('users')->insert([
+                'role_id' => 2,
+                'name' => "MarcDoe$i",
+                'email' => "Marc$i@doe.com",
+                'password' => bcrypt('0000')
+            ]);
+        }
+
     }
 }
