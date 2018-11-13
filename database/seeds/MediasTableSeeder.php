@@ -85,7 +85,7 @@ class MediasTableSeeder extends Seeder
             "website" => "https://www.tf1.fr/news",
             "up_votes" => 421,
             "down_votes" => 138,
-            "logo" => "tf1.jpg",
+            "logo" => "tf1.png",
             "created_at" => $faker->dateTimeBetween('-3 years')
         ]);
         DB::table('medias')->insert([
@@ -94,7 +94,7 @@ class MediasTableSeeder extends Seeder
             "website" => "https://www.lemonde.fr/",
             "up_votes" => 869,
             "down_votes" => 357,
-            "logo" => "le_monde-logo.jpg",
+            "logo" => "le_monde-logo.png",
             "created_at" => $faker->dateTimeBetween('-3 years')
         ]);
         DB::table('medias')->insert([
@@ -103,7 +103,7 @@ class MediasTableSeeder extends Seeder
             "website" => "https://edition.cnn.com/",
             "up_votes" => 791,
             "down_votes" => 253,
-            "logo" => "cnn-logo.jpg",
+            "logo" => "cnn-logo.png",
             "created_at" => $faker->dateTimeBetween('-3 years')
         ]);
     }

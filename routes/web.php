@@ -13,7 +13,7 @@
 
 Route::get('/', 'HomeController@index');
 
-Route::name('validators.')->group(function () {
+Route::name('validator.')->group(function () {
     Route::get('/validator', 'Validator\DashboardController@index')->name('dashboard');
     Route::resource('/validator/contents', 'Validator\ContentController');
 });

@@ -48,7 +48,7 @@ Gestion des médias
                         <a href="{{ route('admin.medias.edit', $media->id) }}" data-toggle="tooltip" data-placement="top" title="Editer">
                             <i class="fas fa-pen fa-lg text-success"></i>
                         </a>
-                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Supprimer" class="bt-delete-media" data-media-id="{{ $media->id }}">
+                        <a href="#!" data-toggle="tooltip" data-placement="bottom" title="Supprimer" class="bt-delete-media" data-media-id="{{ $media->id }}">
                             <i class="fas fa-trash fa-lg text-danger"></i>
                         </a>
                     </td>
